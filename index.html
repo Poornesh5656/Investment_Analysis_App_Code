@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPV Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>NPV Calculator</h1>
+        <form method="post">
+            <label for="initial_investment">Initial Investment:</label>
+            <input type="number" step="0.01" name="initial_investment" required>
+
+            <label for="discount_rate">Discount Rate (%):</label>
+            <input type="number" step="0.01" name="discount_rate" required>
+
+            <label for="cashflows">Cashflows (comma separated):</label>
+            <input type="text" name="cashflows" placeholder="e.g. 1000, 2000, 3000" required>
+
+            <button type="submit">Calculate NPV</button>
+        </form>
+
+        {% if success %}
+            <p class="result">Calculated NPV: <strong>{{ npv }}</strong></p>
+        {% elif error %}
+            <p class="error">Error: {{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
